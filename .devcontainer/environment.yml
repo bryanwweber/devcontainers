@@ -39,6 +39,7 @@ dependencies:
   - pytest-xdist
   # Special case for prophet. Copied from their requirements.txt file
   - cmdstanpy==0.9.68 # this does not bring cmdstan with it
+  - cmdstan
   - convertdate
   - holidays
   - Cython

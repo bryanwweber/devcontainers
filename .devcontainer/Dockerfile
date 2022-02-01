@@ -55,9 +55,10 @@ RUN apt-get update \
 RUN bash /tmp/library-scripts/python-debian.sh "none" "${CONDA_DIR}" "${PIPX_HOME}" "${USERNAME}" "true" \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/* .devcontainer/library-scripts
 
-RUN wget --no-hsts --quiet https://github.com/stan-dev/cmdstan/archive/refs/tags/v2.28.2.tar.gz -O /tmp/cmdstan.tar.gz \
-    && tar -xzf /tmp/cmdstan.tar.gz \
-    &&
+# RUN wget --no-hsts --quiet https://github.com/stan-dev/cmdstan/releases/download/v2.28.2/cmdstan-2.28.2.tar.gz -O /tmp/cmdstan.tar.gz \
+#     && tar -C /opt/conda/bin -xzf /tmp/cmdstan.tar.gz \
+#     && rm /tmp/cmdstan.tar.gz \
+#     && mv /opt/conda/bin/cmdstan-2.28.2 /opt/conda/bin/cmdstan
 
 # Copy environment.yml (if found) to a temp location so we update the environment.
 COPY .devcontainer/environment.yml /tmp/conda-tmp/
