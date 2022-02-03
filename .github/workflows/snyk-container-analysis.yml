@@ -19,20 +19,28 @@ on:
   pull_request:
     # The branches below must be a subset of the branches above
     branches: [ main ]
-  schedule:
-    - cron: '41 20 * * 1'
 
 jobs:
   snyk:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+    - name: Check for modified files
+      uses: tj-actions/changed-files@v14.3
+      id: changed-files
+      with:
+        files: |
+          **/Dockerfile
+          **/environment.yml
+          **/requirements.txt
     - name: Build a Docker image
       run: docker build -f github.com/dask/dask-examples/.devcontainer/Dockerfile -t vsc-dask-examples --build-arg MINIFORGE_NAME=Mambaforge github.com/dask/dask-examples
+      if: steps.changed-files.outputs.any_changed == 'true'
     - name: Run Snyk to check Docker image for vulnerabilities
       # Snyk can be used to break the build when it detects vulnerabilities.
       # In this case we want to upload the issues to GitHub Code Scanning
       continue-on-error: true
+      if: steps.changed-files.outputs.any_changed == 'true'
       uses: snyk/actions/docker@14818c4695ecc4045f33c9cee9e795a788711ca4
       env:
         # In order to use the Snyk Action you will need to have a Snyk API token.
@@ -44,5 +52,6 @@ jobs:
         args: --file=github.com/dask/dask-examples/.devcontainer/Dockerfile
     - name: Upload result to GitHub Code Scanning
       uses: github/codeql-action/upload-sarif@v1
+      if: steps.changed-files.outputs.any_changed == 'true'
       with:
         sarif_file: snyk.sarif
