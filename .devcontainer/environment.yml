@@ -26,6 +26,7 @@ dependencies:
   - pooch
   - bottleneck
   - requests
+  - rasterio
   # Dependencies to build the site
   - pandoc
   - nbconvert

@@ -75,4 +75,4 @@ RUN umask 0002 \
 ENV STAN_BACKEND=CMDSTANPY \
     CMDSTAN=${CONDA_DIR}/bin/cmdstan
 
-# RUN ${CONDA_DIR}/bin/python -m pip install --no-deps -v prophet
+RUN ${CONDA_DIR}/bin/python -m pip install --no-deps -v prophet
