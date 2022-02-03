@@ -55,11 +55,6 @@ RUN apt-get update \
 RUN bash /tmp/library-scripts/python-debian.sh "none" "${CONDA_DIR}" "${PIPX_HOME}" "${USERNAME}" "true" \
     && apt-get clean -y && rm -rf /var/lib/apt/lists/* .devcontainer/library-scripts
 
-# RUN wget --no-hsts --quiet https://github.com/stan-dev/cmdstan/releases/download/v2.28.2/cmdstan-2.28.2.tar.gz -O /tmp/cmdstan.tar.gz \
-#     && tar -C /opt/conda/bin -xzf /tmp/cmdstan.tar.gz \
-#     && rm /tmp/cmdstan.tar.gz \
-#     && mv /opt/conda/bin/cmdstan-2.28.2 /opt/conda/bin/cmdstan
-
 # Copy environment.yml (if found) to a temp location so we update the environment.
 COPY .devcontainer/environment.yml /tmp/conda-tmp/
 RUN umask 0002 \
@@ -68,11 +63,8 @@ RUN umask 0002 \
     && ${CONDA_DIR}/bin/conda clean -afy \
     && find ${CONDA_DIR} -follow -type f -name '*.a' -delete \
     && find ${CONDA_DIR} -follow -type f -name '*.pyc' -delete \
+    && jupyter labextension install dask-labextension \
     && find ${CONDA_DIR} -follow -type f -name '*.js.map' -delete \
-    && find ${CONDA_DIR}/lib/python*/site-packages/bokeh/server/static -follow -type f -name '*.js' ! -name '*.min.js' -delete
-
-# This step has to come after the Conda install because prophet dependencies are installed with conda
-ENV STAN_BACKEND=CMDSTANPY \
-    CMDSTAN=${CONDA_DIR}/bin/cmdstan
-
-RUN ${CONDA_DIR}/bin/python -m pip install --no-deps -v prophet
+    && find ${CONDA_DIR}/lib/python*/site-packages/bokeh/server/static -follow -type f -name '*.js' ! -name '*.min.js' -delete \
+    && STAN_BACKEND=CMDSTANPY CMDSTAN=${CONDA_DIR}/bin/cmdstan ${CONDA_DIR}/bin/python -m pip install --no-cache-dir --no-deps -v prophet \
+    && ${CONDA_DIR}/bin/python -m pip cache purge
