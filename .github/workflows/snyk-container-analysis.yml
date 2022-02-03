@@ -25,6 +25,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
     - name: Check for modified files
       uses: tj-actions/changed-files@v14.3
       id: changed-files
