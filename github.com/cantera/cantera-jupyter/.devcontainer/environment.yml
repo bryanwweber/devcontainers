@@ -1,0 +1,20 @@
+name: cantera-latest
+channels:
+  - cantera
+  - conda-forge
+  - cantera/label/dev
+dependencies:
+  # - cantera
+  - python=3.9
+  - pip
+  - matplotlib
+  - pandas
+  - h5py
+  - scipy
+  - numpy
+  - jupyterlab
+  # Needed to build CoolProp
+  - cython
+  - pip:
+      # - coolprop
+      - cantera
