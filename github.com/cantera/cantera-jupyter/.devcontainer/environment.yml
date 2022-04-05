@@ -13,6 +13,8 @@ dependencies:
   - scipy
   - numpy
   - jupyterlab
+  - ipywidgets
+  - graphviz
   # Needed to build CoolProp
   - cython
   - pip:
