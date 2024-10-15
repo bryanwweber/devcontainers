@@ -8,7 +8,7 @@ Briefly, you have 2 options:
 2. Create a global folder for your devcontainers to live in, and configure the `remote.containers.repositoryConfigurationPaths` User setting to point to that folder. For instance, on my computer, the setting is
 
    ```json
-   "remote.containers.repositoryConfigurationPaths": [
+   "dev.containers.repositoryConfigurationPaths": [
      "/Users/bryan/GitHub/devcontainers"
    ]
    ```
