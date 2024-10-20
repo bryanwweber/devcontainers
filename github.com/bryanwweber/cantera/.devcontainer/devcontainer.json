@@ -11,7 +11,7 @@
 			"installZsh": false,
 			"username": "vscode",
 			"userGid": "1000",
-			"userUid": "1000",
+			"userUid": "1000"
 		}
 	},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
@@ -24,7 +24,8 @@
 			"extensions": [
 				"ms-python.python",
 				"ms-python.vscode-pylance",
-				"charliermarsh.ruff"
+				"charliermarsh.ruff",
+				"ms-vscode.cpptools-extension-pack"
 			],
 			"settings": {
 				"[python]": {
