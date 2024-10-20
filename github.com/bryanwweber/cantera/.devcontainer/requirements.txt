@@ -2,6 +2,8 @@ auditwheel
 build
 cython
 numpy
+pandas
+pint
 pip
 pydata-sphinx-theme
 pygments
@@ -9,6 +11,7 @@ pyparsing
 pytest
 ruamel.yaml
 scikit-build
+scipy
 scons
 setuptools
 sphinx
