@@ -88,11 +88,11 @@ ExternalProject_Add(
     DOWNLOAD_DIR ${DOWNLOAD_DIR}
 )
 
-set(SUNDIALS_VERSION 7.0.0)
+set(SUNDIALS_VERSION 7.1.1)
 ExternalProject_Add(
     sundials
     URL https://github.com/LLNL/sundials/releases/download/v${SUNDIALS_VERSION}/sundials-${SUNDIALS_VERSION}.tar.gz
-    URL_HASH SHA256=d762a7950ef4097fbe9d289f67a8fb717a0b9f90f87ed82170eb5c36c0a07989
+    URL_HASH SHA256=ea7d6edfb52448ddfdc1ec48f89a721fe6c0a259c10f8ef56f60fcded87a94bb
     CMAKE_GENERATOR Ninja
     CMAKE_CACHE_ARGS
         -DCMAKE_C_COMPILER:STRING=${CMAKE_C_COMPILER}
