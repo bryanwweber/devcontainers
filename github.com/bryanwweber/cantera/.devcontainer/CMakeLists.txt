@@ -108,11 +108,11 @@ ExternalProject_Add(
     DOWNLOAD_DIR ${DOWNLOAD_DIR}
 )
 
-set(FMT_VERSION 10.2.1)
+set(FMT_VERSION 11.0.2)
 ExternalProject_Add(
     fmt
     URL https://github.com/fmtlib/fmt/releases/download/${FMT_VERSION}/fmt-${FMT_VERSION}.zip
-    URL_HASH SHA256=312151a2d13c8327f5c9c586ac6cf7cddc1658e8f53edae0ec56509c8fa516c9
+    URL_HASH SHA256=40fc58bebcf38c759e11a7bd8fdc163507d2423ef5058bba7f26280c5b9c5465
     CMAKE_GENERATOR Ninja
     CMAKE_CACHE_ARGS
         -DCMAKE_C_COMPILER:STRING=${CMAKE_C_COMPILER}
